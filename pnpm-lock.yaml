@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@cspotcode/source-map':
+    specifier: ^0.8.0
+    version: 0.8.0
   '@tunebond/halt':
     specifier: ^0.1.4
     version: link:node_modules/@tunebond/halt
@@ -356,6 +359,11 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
+
+  /@cspotcode/source-map@0.8.0:
+    resolution: {integrity: sha512-LJ8rJH2SyApMpjKeL+h9IIF9VbVMX9lel0bkUIWV0G7GlAj/riWBWkUDt6GB4wZiqxPv25hFNa57hPZDrRWrqA==}
+    engines: {node: '>= 12'}
+    dev: false
 
   /@esbuild-kit/cjs-loader@2.4.2:
     resolution: {integrity: sha512-BDXFbYOJzT/NBEtp71cvsrGPwGAMGRB/349rwKuoxNSiKjPraNNnlK6MIIabViCjqZugu6j+xeMDlEkWdHHJSg==}

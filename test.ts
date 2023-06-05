@@ -1,5 +1,5 @@
 import { Link } from '@tunebond/halt'
-import makeHalt from './index.js'
+import makeHalt from './node.js'
 
 type WithName = {
   name: string

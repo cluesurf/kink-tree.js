@@ -72,7 +72,7 @@ export const makeTextHead = (
   list.push(``)
   list.push(tint(`  note <`, H) + tint(`${note}`, P) + tint('>', H))
   list.push(tint(`    code <`, H) + tint(`${code}`, G) + tint(`>`, H))
-  list.push(tint(`    host <`, H) + tint(`${host}`, V) + tint(`>`, H))
+  list.push(tint(`    host <`, H) + tint(`${host}`, H) + tint(`>`, H))
   return list
 }
 
@@ -166,10 +166,17 @@ export function makeBaseText(
   return makeTextHead(note, code, host, tone).join('\n')
 }
 
+export type HostLinkHook = (
+  file: string,
+  line: number,
+  rise: number,
+) => [string, number | undefined, number | undefined]
+
 export function saveLinkList(
   halt: Error,
   list: Array<NodeJS.CallSite>,
   tone: HaltTone,
+  hook?: HostLinkHook,
 ) {
   const T = TONE[tone]
   const V = { tone: T.base }
@@ -186,6 +193,16 @@ export function saveLinkList(
         let x = site.getFileName()
         let a: number | null | undefined = site.getLineNumber()
         let b: number | null | undefined = site.getColumnNumber()
+
+        if (
+          hook &&
+          x &&
+          typeof a === 'number' &&
+          typeof b === 'number' &&
+          typeof x === 'string'
+        ) {
+          ;[x, a, b] = hook(x, a, b)
+        }
 
         let m = site.getMethodName()?.trim()
         let f = site.getFunctionName()?.trim()
@@ -218,6 +235,14 @@ export function saveLinkList(
   )
 }
 
+export type MakeHalt<
+  B,
+  N extends keyof B & string = keyof B & string,
+> = Omit<Make<B, N>, 'text'> & {
+  hook?: HostLinkHook
+  tone?: HaltTone
+}
+
 export default function makeHalt<
   B,
   N extends keyof B & string = keyof B & string,
@@ -228,7 +253,8 @@ export default function makeHalt<
   code,
   link = {},
   tone = 'fall',
-}: Omit<Make<B, N>, 'text'> & { tone?: HaltTone }) {
+  hook,
+}: MakeHalt<B, N>) {
   // Error.stackTraceLimit = Infinity
 
   const prepareStackTrace = Error.prepareStackTrace
@@ -237,7 +263,7 @@ export default function makeHalt<
     halt: Error,
     list: Array<NodeJS.CallSite>,
   ) {
-    return saveLinkList(halt, list, tone)
+    return saveLinkList(halt, list, tone, hook)
   }
 
   const text = (host: string, code: string, note: string) =>
