@@ -3,7 +3,7 @@ import Halt, { Make } from '@tunebond/halt'
 
 export type HaltTone = 'rise' | 'fall'
 
-const TONE: Record<HaltTone, Record<string, string>> = {
+export const TONE: Record<HaltTone, Record<string, string>> = {
   fall: {
     base: '#ffffff',
     blue: '#82cdf0',
@@ -238,9 +238,10 @@ export function saveLinkList(
 export type MakeHalt<
   B,
   N extends keyof B & string = keyof B & string,
-> = Omit<Make<B, N>, 'text'> & {
+> = Make<B, N> & {
   hook?: HostLinkHook
   tone?: HaltTone
+  head?: string
 }
 
 export default function makeHalt<
@@ -254,6 +255,7 @@ export default function makeHalt<
   link = {},
   tone = 'fall',
   hook,
+  head = '',
 }: MakeHalt<B, N>) {
   // Error.stackTraceLimit = Infinity
 
@@ -267,7 +269,7 @@ export default function makeHalt<
   }
 
   const text = (host: string, code: string, note: string) =>
-    makeBaseText(host, code, note, tone)
+    makeBaseText(host, code, note, tone) + head
 
   const halt = new Halt({
     base,

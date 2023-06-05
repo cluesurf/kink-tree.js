@@ -1,7 +1,18 @@
 import smc from '@cspotcode/source-map'
+import {
+  Link,
+  HaltMesh,
+  haveHalt,
+  saveHalt,
+  testHalt,
+} from '@tunebond/halt'
 import fs from 'fs'
 import pathResolve from 'path'
-import makeHaltBase, { MakeHalt } from './index.js'
+import makeHaltBase, { MakeHalt, makeText, TONE } from './index.js'
+
+export { makeText, haveHalt, saveHalt, testHalt, TONE }
+
+export type { HaltMesh, Link }
 
 const HOST_LINK_MESH: Record<string, smc.SourceMapConsumer> = {}
 
@@ -13,7 +24,7 @@ export function loadHostLink(
     return link
   }
 
-  const fileLink = line.replace(/^file\:\/\//, '')
+  const fileLink = line.replace(/^file:\/\//, '')
 
   if (fs.existsSync(`${fileLink}.map`)) {
     const mapContent = fs.readFileSync(`${fileLink}.map`, 'utf-8')
