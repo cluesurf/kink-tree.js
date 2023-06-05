@@ -90,6 +90,7 @@ export const makeText = (
   const list: Array<string> = []
 
   const T = TONE[tone]
+  const V = { tone: T.base }
   const VB = { bold: true, tone: T.base }
   const H = { tone: T.gray }
 
@@ -113,7 +114,7 @@ export const makeText = (
 
     if (link.task) {
       const callText = tint(`    call <`, H)
-      const taskText = tint(link.task, v)
+      const taskText = tint(link.task, V)
       list.push(`${callText}${taskText}${tint('>', H)}`)
     }
   })
