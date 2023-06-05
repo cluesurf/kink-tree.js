@@ -1,7 +1,7 @@
 {
   "name": "@tunebond/halt-text",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "./host/node.js",
   "browser": "./host/browser.js",
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@cspotcode/source-map": "^0.8.0",
-    "@tunebond/halt": "^0.1.4",
+    "@tunebond/halt": "^0.1.6",
     "@tunebond/tint": "^0.0.1"
   }
 }
