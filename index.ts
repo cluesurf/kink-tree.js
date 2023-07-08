@@ -1,5 +1,4 @@
 import tint from '@tunebond/tint-text'
-import Kink from '@tunebond/kink'
 
 export type LineListLink = {
   code?: number
@@ -145,19 +144,22 @@ export function readListLine(text: string, hook?: HostLinkHook) {
   }
 }
 
-export function readListLineFile(text: string, hook?: HostLinkHook): LineListLink {
+export function readListLineFile(
+  text: string,
+  hook?: HostLinkHook,
+): LineListLink {
   const list = text.replace(/[\(\)]/g, '').split(':')
   const code = list.pop()
   let codeMark = code ? parseInt(code, 10) : undefined
   const line = list.pop()
   let lineMark = line ? parseInt(line, 10) : undefined
   let file = list.join(':')
-  if (hook && typeof lineMark === 'number' && typeof codeMark === 'number') {
-    ;[file, lineMark, codeMark] = hook(
-      file,
-      lineMark,
-      codeMark,
-    )
+  if (
+    hook &&
+    typeof lineMark === 'number' &&
+    typeof codeMark === 'number'
+  ) {
+    ;[file, lineMark, codeMark] = hook(file, lineMark, codeMark)
   }
   return {
     code: codeMark,
@@ -166,11 +168,7 @@ export function readListLineFile(text: string, hook?: HostLinkHook): LineListLin
   }
 }
 
-export function makeBaseText(
-  host: string,
-  code: string,
-  note: string,
-) {
+export function makeBaseText(host: string, code: string, note: string) {
   return makeTextHead(note, code, host).join('\n')
 }
 
