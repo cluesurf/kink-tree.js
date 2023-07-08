@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -11,6 +11,9 @@ dependencies:
   '@tunebond/halt':
     specifier: ^0.1.6
     version: 0.1.6
+  '@tunebond/kink':
+    specifier: ^0.0.1
+    version: 0.0.1
   '@tunebond/tint':
     specifier: ^0.0.1
     version: 0.0.1
@@ -739,6 +742,12 @@ packages:
     resolution: {integrity: sha512-IbA0lK2UjZGETHEPyCiMw22glhm2DtG6dKbP6pk14am9MOnKicjIBvBQcs6xn8YmzLdYQBWftWhrfVIH8XIVDA==}
     dependencies:
       '@tunebond/tint': 0.0.1
+      ts-custom-error: 3.3.1
+    dev: false
+
+  /@tunebond/kink@0.0.1:
+    resolution: {integrity: sha512-f5o+ILJyGbazFT4ZAFjiSsKOlZlWWCTAceVyr6wgSxoGFm/PmV7RtqrufJewzSYzc+fj+OQSW38Uyx7Iygr27Q==}
+    dependencies:
       ts-custom-error: 3.3.1
     dev: false
 

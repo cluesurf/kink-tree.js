@@ -1,18 +1,8 @@
 import smc from '@cspotcode/source-map'
-import {
-  Link,
-  HaltMesh,
-  haveHalt,
-  saveHalt,
-  testHalt,
-} from '@tunebond/halt'
+import Kink from '@tunebond/kink'
 import fs from 'fs'
 import pathResolve from 'path'
-import makeHaltBase, { MakeHalt, makeText, TONE } from './index.js'
-
-export { makeText, haveHalt, saveHalt, testHalt, TONE }
-
-export type { HaltMesh, Link }
+import makeText from './index.js'
 
 const HOST_LINK_MESH: Record<string, smc.SourceMapConsumer> = {}
 
@@ -75,9 +65,15 @@ export function readHostLinkFile(
   }
 }
 
-export default function makeHalt<
-  B,
-  N extends keyof B & string = keyof B & string,
->(load: Omit<MakeHalt<B, N>, 'hook'>) {
-  return makeHaltBase({ ...load, hook: readHostLinkFile })
+export function makeKinkText(kink: Kink) {
+  return makeText({
+    host: kink.host,
+    code: kink.code,
+    note: kink.note,
+    list: kink.stack?.split('\n') ?? [],
+    file: typeof kink.link.file === 'string' ? kink.link.file : undefined,
+    text: typeof kink.link.text === 'string' ? kink.link.text : undefined,
+    hint: typeof kink.link.hint === 'string' ? kink.link.hint : undefined,
+    link: kink.link,
+  })
 }
