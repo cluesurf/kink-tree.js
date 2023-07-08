@@ -6,7 +6,7 @@ import makeText from './index.js'
 
 const HOST_LINK_MESH: Record<string, smc.SourceMapConsumer> = {}
 
-export function loadHostLink(
+function loadHostLink(
   line: string,
 ): smc.SourceMapConsumer | void {
   const link = HOST_LINK_MESH[`${line}`]
@@ -25,7 +25,7 @@ export function loadHostLink(
   }
 }
 
-export function readLink(path: string, context: string): string {
+function readLink(path: string, context: string): string {
   const relative = pathResolve.relative(
     process.cwd(),
     pathResolve.resolve(context, path),
@@ -33,7 +33,7 @@ export function readLink(path: string, context: string): string {
   return relative.startsWith('.') ? relative : `./${relative}`
 }
 
-export function readHostLinkFile(
+function readHostLinkFile(
   file: string,
   line: number,
   rise: number,
@@ -65,6 +65,8 @@ export function readHostLinkFile(
   }
 }
 
+export { makeText }
+
 export function makeKinkText(kink: Kink) {
   return makeText({
     host: kink.host,
@@ -75,5 +77,16 @@ export function makeKinkText(kink: Kink) {
     text: typeof kink.link.text === 'string' ? kink.link.text : undefined,
     hint: typeof kink.link.hint === 'string' ? kink.link.hint : undefined,
     link: kink.link,
+    hook: readHostLinkFile,
+  })
+}
+
+export function makeBaseKinkText(kink: Error) {
+  return makeText({
+    host: 'node',
+    code: 'code' in kink && typeof kink.code === 'string' ? kink.code : '0000',
+    note: kink.message,
+    list: kink.stack?.split('\n') ?? [],
+    hook: readHostLinkFile,
   })
 }

@@ -27,7 +27,7 @@ export function makeLinkList(list: Array<string>, hook?: HostLinkHook) {
     }
   }
 
-  return { linkList, note: noteLine }
+  return { linkList: linkList.reverse(), note: noteLine }
 }
 
 export const makeTextHead = (
@@ -38,7 +38,7 @@ export const makeTextHead = (
   const list: Array<string> = []
 
   const R = { tone: 'red' }
-  const P = { tone: 'purple' }
+  const P = { tone: 'white' }
   const H = { tone: 'blackBright' }
 
   list.push(``)
@@ -78,6 +78,7 @@ const makeText = ({
   const textList: Array<string> = []
 
   const V = { tone: 'white' }
+  const B = { tone: 'blue' }
   const VB = { tone: 'whiteBright' }
   const H = { tone: 'blackBright' }
   const Y = { tone: 'yellow' }
@@ -115,7 +116,7 @@ const makeText = ({
 
     const headText = head.length ? ':' + head.join(':') : ''
     const siteText = tint('site <', H)
-    const fileText = tint(`${link.file}${headText}`, VB)
+    const fileText = tint(`${link.file}${headText}`, B)
     textList.push(`  ${siteText}${fileText}${tint('>', H)}`)
 
     if (link.task) {

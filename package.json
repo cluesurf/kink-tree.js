@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@cspotcode/source-map": "^0.8.0",
-    "@tunebond/kink": "^0.0.1",
-    "@tunebond/tint-text": "^0.0.1"
+    "@tunebond/kink": "^0.x.x",
+    "@tunebond/tint-text": "^0.x.x"
   }
 }

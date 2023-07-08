@@ -1,42 +1,40 @@
-import { Link } from '@tunebond/halt'
-import makeHalt from './node.js'
+import Kink from '@tunebond/kink'
+import fs from 'fs'
+import { makeKinkText, makeBaseKinkText } from './node.js'
 
-type WithName = {
-  name: string
+const host = '@tunebond/kink-text'
+
+type Base = {
+  syntax_error: {}
 }
-
-type WithType = WithName & {
-  type: string
-}
-
-const host = '@tunebond/halt-text'
-
-const base = {
-  invalid_form: {
-    code: 3,
-    note: ({ name }: WithName) => `Form '${name}' is not valid`,
-  },
-  invalid_type: {
-    code: 2,
-    note: ({ name, type }: WithType) =>
-      `Value '${name}' is not '${type}' type`,
-  },
-  missing_property: {
-    code: 1,
-    note: ({ name }: WithName) => `Property '${name}' missing`,
-  },
-}
-
-type Base = typeof base
 
 type Name = keyof Base
 
-export function halt(form: Name, link: Link<Base, Name>) {
-  throw makeHalt({ base, form, host, link })
+Kink.base(host, 'syntax_error', () => ({
+  code: 1,
+  note: 'Syntax error'
+}))
+
+Kink.code(host, (code: number) => code.toString(16).padStart(4, '0'))
+
+export default function kink<N extends Name>(form: N, link?: Base[N]) {
+  return new Kink(Kink.makeBase(host, form, link))
 }
 
+// https://nodejs.org/api/errors.html
 process.on('uncaughtException', err => {
-  console.log(err.stack)
+  if (err instanceof Kink) {
+    console.log(makeKinkText(err))
+  } else {
+    console.log(makeBaseKinkText(err))
+  }
 })
 
-halt('invalid_type', { name: 'foo', type: 'bar' })
+setTimeout(() => {
+  throw kink('syntax_error')
+})
+
+setTimeout(() => {
+  fs.readFileSync('.')
+})
+
