@@ -40,7 +40,6 @@ export const makeTextHead = (
   const W = { tone: 'white' }
   const H = { tone: 'blackBright' }
 
-  list.push(``)
   list.push(tint(`  note <`, H) + tint(`${note}`, R) + tint('>', H))
   list.push(tint(`  code <`, H) + tint(`${code}`, W) + tint(`>`, H))
   list.push(tint(`  host <`, H) + tint(`${host}`, H) + tint(`>`, H))
@@ -103,8 +102,6 @@ const makeText = ({
       textList.push(`${callText}${taskText}${tint('>', H)}`)
     }
   })
-
-  textList.push(``)
 
   return textList.join('\n')
 
@@ -308,10 +305,6 @@ export function readListLineFile(
     file,
     line: lineMark,
   }
-}
-
-export function makeBaseText(host: string, code: string, note: string) {
-  return makeTextHead(note, code, host).join('\n')
 }
 
 export type HostLinkHook = (
