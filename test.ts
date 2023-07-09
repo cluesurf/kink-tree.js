@@ -12,18 +12,19 @@ type Name = keyof Base
 
 Kink.base(host, 'syntax_error', () => ({
   code: 1,
-  note: 'Syntax error'
+  note: 'Syntax error',
 }))
 
 Kink.code(host, (code: number) => code.toString(16).padStart(4, '0'))
 
 export default function kink<N extends Name>(form: N, link?: Base[N]) {
-  return new Kink(Kink.makeBase(host, form, link))
+  return Kink.make(host, form, link)
 }
 
 // https://nodejs.org/api/errors.html
 process.on('uncaughtException', err => {
   if (err instanceof Kink) {
+    // Kink.saveFill(err, err.link)
     console.log(makeKinkText(err))
   } else {
     console.log(makeBaseKinkText(err))
@@ -37,4 +38,3 @@ setTimeout(() => {
 setTimeout(() => {
   fs.readFileSync('.')
 })
-

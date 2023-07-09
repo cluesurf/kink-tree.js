@@ -37,13 +37,13 @@ export const makeTextHead = (
   const list: Array<string> = []
 
   const R = { tone: 'red' }
-  const P = { tone: 'white' }
+  const W = { tone: 'white' }
   const H = { tone: 'blackBright' }
 
   list.push(``)
   list.push(tint(`  note <`, H) + tint(`${note}`, R) + tint('>', H))
-  list.push(tint(`    code <`, H) + tint(`${code}`, P) + tint(`>`, H))
-  list.push(tint(`    host <`, H) + tint(`${host}`, H) + tint(`>`, H))
+  list.push(tint(`  code <`, H) + tint(`${code}`, W) + tint(`>`, H))
+  list.push(tint(`  host <`, H) + tint(`${host}`, H) + tint(`>`, H))
   return list
 }
 
@@ -51,9 +51,6 @@ export type MakeText = {
   host: string
   code: string
   note: string
-  hint?: string
-  text?: string
-  file?: string
   link?: Record<string, unknown>
   // stack trace
   list: Array<string>
@@ -68,39 +65,21 @@ const makeText = ({
   host,
   code,
   note,
+  link = {},
   list,
-  hint,
-  file,
-  text,
   hook,
 }: MakeText) => {
   const textList: Array<string> = []
 
-  const V = { tone: 'white' }
+  const W = { tone: 'white' }
+  const WB = { tone: 'whiteBright' }
   const B = { tone: 'blue' }
-  const VB = { tone: 'whiteBright' }
+  const G = { tone: 'green' }
   const H = { tone: 'blackBright' }
-  const Y = { tone: 'yellow' }
 
   textList.push(...makeTextHead(note, code, host))
 
-  if (file && text) {
-    textList.push(tint(`  file <${file}>, <`, H))
-    text.split(/\n/).forEach(line => {
-      textList.push(`    ${line}`)
-    })
-    textList.push(tint(`  >`, H))
-  } else if (text) {
-    textList.push(tint(`  text <`, H))
-    text.split(/\n/).forEach(line => {
-      textList.push(`    ${line}`)
-    })
-    textList.push(tint(`  >`, H))
-  }
-
-  if (hint) {
-    textList.push(tint(`  hint <`, H) + tint(hint, Y) + tint(`>`, H))
-  }
+  textList.push(...makeLinkHash(link, 1))
 
   const { linkList } = makeLinkList(list, hook)
 
@@ -115,12 +94,12 @@ const makeText = ({
 
     const headText = head.length ? ':' + head.join(':') : ''
     const siteText = tint('site <', H)
-    const fileText = tint(`${link.file}${headText}`, B)
+    const fileText = tint(`${link.file}${headText}`, WB)
     textList.push(`  ${siteText}${fileText}${tint('>', H)}`)
 
     if (link.task) {
       const callText = tint(`    call <`, H)
-      const taskText = tint(link.task, V)
+      const taskText = tint(link.task, W)
       textList.push(`${callText}${taskText}${tint('>', H)}`)
     }
   })
@@ -128,6 +107,169 @@ const makeText = ({
   textList.push(``)
 
   return textList.join('\n')
+
+  function makeLinkHash(link: Record<string, unknown>, move: number) {
+    const textList: Array<string> = []
+    const moveText = makeTextMove(move)
+
+    for (const name in link) {
+      const bond = link[name]
+      if (bond === undefined) {
+        textList.push(...makeLinkVoid(name, move))
+      } else if (bond === null) {
+        textList.push(...makeLinkNull(name, move))
+      } else if (typeof bond === 'boolean') {
+        textList.push(...makeLinkWave(name, bond, move))
+      } else if (typeof bond === 'string') {
+        textList.push(...makeLinkText(name, bond, move))
+      } else if (typeof bond === 'number') {
+        textList.push(...makeLinkSize(name, bond, move))
+      } else if (Array.isArray(bond)) {
+        bond.forEach(bond => {
+          textList.push(...makeLinkBond(name, bond, move))
+        })
+      } else if (typeof bond === 'object') {
+        let base = true
+        for (const bondName in bond) {
+          const bind = (bond as Record<string, unknown>)[bondName]
+          if (base) {
+            base = false
+            if (bind === undefined) {
+              textList.push(...makeLinkVoid(name, move))
+            } else if (bind === null) {
+              textList.push(...makeLinkNull(name, move))
+            } else if (typeof bind === 'boolean') {
+              textList.push(...makeLinkWave(name, bind, move))
+            } else if (typeof bind === 'string') {
+              textList.push(...makeLinkText(name, bind, move))
+            } else if (typeof bind === 'number') {
+              textList.push(...makeLinkSize(name, bind, move))
+            } else if (Array.isArray(bind)) {
+              textList.push(`${moveText}${tint(`${name}`, H)}`)
+              bind.forEach(bind => {
+                textList.push(...makeLinkBond(bondName, bind, move + 1))
+              })
+            } else if (typeof bind === 'object') {
+              textList.push(`${moveText}${tint(`${name}`, H)}`)
+              textList.push(...makeLinkBond(bondName, bind, move + 1))
+            }
+          } else {
+            if (bind === undefined) {
+              textList.push(...makeLinkVoid(bondName, move + 1))
+            } else if (bind === null) {
+              textList.push(...makeLinkNull(bondName, move + 1))
+            } else if (typeof bind === 'boolean') {
+              textList.push(...makeLinkWave(bondName, bind, move + 1))
+            } else if (typeof bind === 'string') {
+              textList.push(...makeLinkText(bondName, bind, move + 1))
+            } else if (typeof bind === 'number') {
+              textList.push(...makeLinkSize(bondName, bind, move + 1))
+            } else if (Array.isArray(bind)) {
+              bind.forEach(bind => {
+                textList.push(...makeLinkBond(bondName, bind, move + 1))
+              })
+            } else if (typeof bind === 'object') {
+              textList.push(...makeLinkBond(bondName, bind, move + 1))
+            }
+          }
+        }
+      }
+    }
+
+    return textList
+  }
+
+  function makeLinkBond(name: string, bond: unknown, move: number) {
+    const textList: Array<string> = []
+    if (bond === undefined) {
+      textList.push(...makeLinkVoid(name, move))
+    } else if (bond === null) {
+      textList.push(...makeLinkNull(name, move))
+    } else if (typeof bond === 'boolean') {
+      textList.push(...makeLinkWave(name, bond, move))
+    } else if (typeof bond === 'string') {
+      textList.push(...makeLinkText(name, bond, move))
+    } else if (typeof bond === 'number') {
+      textList.push(...makeLinkSize(name, bond, move))
+    } else if (typeof bond === 'object') {
+      const moveText = makeTextMove(move)
+      textList.push(`${moveText}${tint(`${name}`, H)}`)
+      textList.push(
+        ...makeLinkHash(bond as Record<string, unknown>, move + 1),
+      )
+    }
+    return textList
+  }
+
+  function makeLinkVoid(name: string, move: number) {
+    const textList: Array<string> = []
+    const moveText = makeTextMove(move)
+    textList.push(
+      `${moveText}${tint(`${name} <`, H)}${tint('void', B)}${tint(
+        `>`,
+        H,
+      )}`,
+    )
+    return textList
+  }
+
+  function makeLinkNull(name: string, move: number) {
+    const textList: Array<string> = []
+    const moveText = makeTextMove(move)
+    textList.push(
+      `${moveText}${tint(`${name} <`, H)}${tint('null', B)}${tint(
+        `>`,
+        H,
+      )}`,
+    )
+    return textList
+  }
+
+  function makeLinkSize(name: string, bond: number, move: number) {
+    const textList: Array<string> = []
+    const moveText = makeTextMove(move)
+    textList.push(
+      `${moveText}${tint(`${name} <`, H)}${tint(String(bond), G)}${tint(
+        `>`,
+        H,
+      )}`,
+    )
+    return textList
+  }
+
+  function makeLinkWave(name: string, bond: boolean, move: number) {
+    const textList: Array<string> = []
+    const moveText = makeTextMove(move)
+    textList.push(
+      `${moveText}${tint(`${name} <`, H)}${tint(String(bond), B)}${tint(
+        `>`,
+        H,
+      )}`,
+    )
+    return textList
+  }
+
+  function makeLinkText(name: string, bond: string, move: number) {
+    const textList: Array<string> = []
+    const moveText = makeTextMove(move)
+    if (bond.match(/\n/)) {
+      textList.push(`${moveText}${tint(`${name} <`, H)}`)
+      bond.split(/\n/).forEach(line => {
+        const moveNest = move + 1
+        const moveNestText = makeTextMove(moveNest)
+        textList.push(`${moveNestText}${line}`)
+      })
+      textList.push(`${moveText}${tint(`>`, H)}`)
+    } else {
+      textList.push(
+        `${moveText}${tint(`${name} <`, H)}${tint(bond, B)}${tint(
+          `>`,
+          H,
+        )}`,
+      )
+    }
+    return textList
+  }
 }
 
 export default makeText
@@ -177,3 +319,7 @@ export type HostLinkHook = (
   line: number,
   rise: number,
 ) => [string, number | undefined, number | undefined]
+
+function makeTextMove(move: number) {
+  return new Array(move + 1).join('  ')
+}
