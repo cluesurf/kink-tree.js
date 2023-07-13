@@ -40,7 +40,7 @@ export const makeTextHead = (
   const W = { tone: 'white' }
   const H = { tone: 'blackBright' }
 
-  list.push(tint(`  note <`, H) + tint(`${note}`, R) + tint('>', H))
+  list.push(tint(`  kink <`, H) + tint(`${note}`, R) + tint('>', H))
   list.push(tint(`  code <`, H) + tint(`${code}`, W) + tint(`>`, H))
   list.push(tint(`  host <`, H) + tint(`${host}`, H) + tint(`>`, H))
   return list
@@ -200,13 +200,13 @@ const makeText = ({
 
   function makeLinkVoid(name: string, move: number) {
     const textList: Array<string> = []
-    const moveText = makeTextMove(move)
-    textList.push(
-      `${moveText}${tint(`${name} <`, H)}${tint('void', B)}${tint(
-        `>`,
-        H,
-      )}`,
-    )
+    // const moveText = makeTextMove(move)
+    // textList.push(
+    //   `${moveText}${tint(`${name} <`, H)}${tint('void', B)}${tint(
+    //     `>`,
+    //     H,
+    //   )}`,
+    // )
     return textList
   }
 
