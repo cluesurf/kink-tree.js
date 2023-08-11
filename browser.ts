@@ -1,4 +1,4 @@
-import Kink from '@tunebond/kink'
+import Kink from '@nerdbond/kink'
 import makeText from './index.js'
 
 export { makeText }

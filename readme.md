@@ -6,7 +6,7 @@
 <br/>
 <br/>
 
-<h3 align='center'>@tunebond/kink-text</h3>
+<h3 align='center'>@nerdbond/kink-text</h3>
 <p align='center'>
   Error printing in TypeScript
 </p>
@@ -18,26 +18,26 @@
 ## Installation
 
 ```
-pnpm add @tunebond/kink-text
-yarn add @tunebond/kink-text
-npm i @tunebond/kink-text
+pnpm add @nerdbond/kink-text
+yarn add @nerdbond/kink-text
+npm i @nerdbond/kink-text
 ```
 
 ## Usage
 
 <p align='center'>
-  <img src='https://github.com/tunebond/kink-text.js/blob/make/halt.png?raw=true' width='640'/>
+  <img src='https://github.com/nerdbond/kink-text.js/blob/make/halt.png?raw=true' width='640'/>
 </p>
 
 ## License
 
 MIT
 
-## TuneBond
+## NerdBond
 
-This is being developed by the folks at [TuneBond](https://tune.bond), a
+This is being developed by the folks at [NerdBond](https://nerd.bond), a
 California-based project for helping humanity master information and
-computation. Find us on [Twitter](https://twitter.com/tunebond),
-[LinkedIn](https://www.linkedin.com/company/tunebond), and
-[Facebook](https://www.facebook.com/tunebond). Check out our other
-[GitHub projects](https://github.com/tunebond) as well!
+computation. Find us on [Twitter](https://twitter.com/nerdbond),
+[LinkedIn](https://www.linkedin.com/company/nerdbond), and
+[Facebook](https://www.facebook.com/nerdbond). Check out our other
+[GitHub projects](https://github.com/nerdbond) as well!

@@ -1,8 +1,8 @@
-import Kink from '@tunebond/kink'
+import Kink from '@nerdbond/kink'
 import fs from 'fs'
 import { makeKinkText, makeBaseKinkText } from './node.js'
 
-const host = '@tunebond/kink-text'
+const host = '@nerdbond/kink-text'
 
 type Base = {
   syntax_error: {}
