@@ -6,7 +6,7 @@
 <br/>
 <br/>
 
-<h3 align='center'>@nerdbond/kink-text</h3>
+<h3 align='center'>@wavebond/kink-text</h3>
 <p align='center'>
   Error printing in TypeScript
 </p>
@@ -18,26 +18,26 @@
 ## Installation
 
 ```
-pnpm add @nerdbond/kink-text
-yarn add @nerdbond/kink-text
-npm i @nerdbond/kink-text
+pnpm add @wavebond/kink-text
+yarn add @wavebond/kink-text
+npm i @wavebond/kink-text
 ```
 
 ## Usage
 
 <p align='center'>
-  <img src='https://github.com/nerdbond/kink-text.js/blob/make/halt.png?raw=true' width='640'/>
+  <img src='https://github.com/wavebond/kink-text.js/blob/make/halt.png?raw=true' width='640'/>
 </p>
 
 ## License
 
 MIT
 
-## NerdBond
+## WaveBond
 
-This is being developed by the folks at [NerdBond](https://nerd.bond), a
+This is being developed by the folks at [WaveBond](https://wave.bond), a
 California-based project for helping humanity master information and
-computation. Find us on [Twitter](https://twitter.com/nerdbond),
-[LinkedIn](https://www.linkedin.com/company/nerdbond), and
-[Facebook](https://www.facebook.com/nerdbond). Check out our other
-[GitHub projects](https://github.com/nerdbond) as well!
+computation. Find us on [Twitter](https://twitter.com/wavebond),
+[LinkedIn](https://www.linkedin.com/company/wavebond), and
+[Facebook](https://www.facebook.com/wavebond). Check out our other
+[GitHub projects](https://github.com/wavebond) as well!

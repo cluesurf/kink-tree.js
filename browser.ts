@@ -13,13 +13,5 @@ export function makeKinkText(kink: Kink) {
 }
 
 export function makeBaseKinkText(kink: Error) {
-  return makeText({
-    host: 'node',
-    code:
-      'code' in kink && typeof kink.code === 'string'
-        ? kink.code
-        : '0000',
-    note: kink.message,
-    list: kink.stack?.split('\n') ?? [],
-  })
+  return makeText(Kink.makeBase(kink))
 }

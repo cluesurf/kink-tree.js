@@ -40,7 +40,7 @@ export const makeTextHead = (
   const W = { tone: 'white' }
   const H = { tone: 'blackBright' }
 
-  list.push(tint(`  kink <`, H) + tint(`${note}`, R) + tint('>', H))
+  list.push(tint(`kink <`, H) + tint(`${note}`, R) + tint('>', H))
   list.push(tint(`  code <`, H) + tint(`${code}`, W) + tint(`>`, H))
   list.push(tint(`  host <`, H) + tint(`${host}`, H) + tint(`>`, H))
   return list
@@ -103,7 +103,7 @@ const makeText = ({
     }
   })
 
-  return textList.join('\n')
+  return textList.map(line => `  ${line}`).join('\n')
 
   function makeLinkHash(link: Record<string, unknown>, move: number) {
     const textList: Array<string> = []
