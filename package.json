@@ -1,5 +1,5 @@
 {
-  "name": "@wavebond/kink-text",
+  "name": "@textsurf/kink-text",
   "type": "module",
   "version": "0.0.1",
   "license": "MIT",
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@cspotcode/source-map": "^0.8.0",
-    "@wavebond/kink": "^0.x.x",
-    "@wavebond/tint-text": "^0.x.x"
+    "@textsurf/kink": "^0.x.x",
+    "@textsurf/tint-text": "^0.x.x"
   }
 }
