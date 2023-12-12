@@ -6,7 +6,7 @@
 <br/>
 <br/>
 
-<h3 align='center'>@textsurf/kink-text</h3>
+<h3 align='center'>@termsurf/kink-text</h3>
 <p align='center'>
   Error printing in TypeScript
 </p>
@@ -18,26 +18,26 @@
 ## Installation
 
 ```
-pnpm add @textsurf/kink-text
-yarn add @textsurf/kink-text
-npm i @textsurf/kink-text
+pnpm add @termsurf/kink-text
+yarn add @termsurf/kink-text
+npm i @termsurf/kink-text
 ```
 
 ## Usage
 
 <p align='center'>
-  <img src='https://github.com/textsurf/kink-text.js/blob/make/halt.png?raw=true' width='640'/>
+  <img src='https://github.com/termsurf/kink-text.js/blob/make/halt.png?raw=true' width='640'/>
 </p>
 
 ## License
 
 MIT
 
-## TextSurf
+## TermSurf
 
-This is being developed by the folks at [TextSurf](https://text.surf), a
+This is being developed by the folks at [TermSurf](https://term.surf), a
 California-based project for helping humanity master information and
-computation. Find us on [Twitter](https://twitter.com/textsurfcode),
-[LinkedIn](https://www.linkedin.com/company/textsurf), and
-[Facebook](https://www.facebook.com/textsurfcodecode). Check out our
-other [GitHub projects](https://github.com/textsurf) as well!
+computation. Find us on [Twitter](https://twitter.com/termsurfcode),
+[LinkedIn](https://www.linkedin.com/company/termsurf), and
+[Facebook](https://www.facebook.com/termsurfcodecode). Check out our
+other [GitHub projects](https://github.com/termsurf) as well!
