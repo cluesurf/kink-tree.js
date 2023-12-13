@@ -1,5 +1,5 @@
 import smc from '@cspotcode/source-map'
-import Kink from '@nerdbond/kink'
+import Kink from '@termsurf/kink'
 import fs from 'fs'
 import pathResolve from 'path'
 import makeText from './index.js'

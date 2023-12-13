@@ -1,4 +1,4 @@
-import tint from '@nerdbond/tint-text'
+import tint from '@termsurf/tint-text'
 
 export type LineListLink = {
   code?: number

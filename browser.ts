@@ -1,4 +1,4 @@
-import Kink from '@nerdbond/kink'
+import Kink from '@termsurf/kink'
 import makeText from './index.js'
 
 export { makeText }
