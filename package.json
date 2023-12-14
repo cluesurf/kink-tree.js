@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@cspotcode/source-map": "^0.8.0",
-    "@termsurf/kink": "^0.x.x",
-    "@termsurf/tint-text": "^0.x.x"
+    "@termsurf/kink": "^0.1.1",
+    "@termsurf/tint-text": "^0.0.3"
   }
 }
