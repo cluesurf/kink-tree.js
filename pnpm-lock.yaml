@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.8.0
     version: 0.8.0
   '@termsurf/kink':
-    specifier: ^0.1.1
-    version: 0.1.1
+    specifier: ^0.1.2
+    version: 0.1.2
   '@termsurf/tint-text':
     specifier: ^0.0.3
     version: 0.0.3
@@ -737,8 +737,8 @@ packages:
       tslib: 2.6.0
     dev: true
 
-  /@termsurf/kink@0.1.1:
-    resolution: {integrity: sha512-mJ2R+ECo7/QATyyxxqGhvhuGuGm22DR/M1MBiIhTgCdUaX5PyxtAHG7p9EgzwgASabqQbkLuWVdrVCYaHQSSDA==}
+  /@termsurf/kink@0.1.2:
+    resolution: {integrity: sha512-8mnZrai6q48jc7CbfNM1kQz/5aVKtwHarCnz30KJjecIlgsWpU7gL5L5Xh5ZIrlIvY8m+cO+vuxoljn9CGyBFA==}
     dependencies:
       ts-custom-error: 3.3.1
     dev: false
