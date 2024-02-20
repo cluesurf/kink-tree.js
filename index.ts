@@ -67,7 +67,7 @@ const makeText = ({
   link = {},
   list,
   hook,
-}: MakeText) => {
+}: MakeText): string => {
   const textList: Array<string> = []
 
   const W = { tone: 'white' }
@@ -103,7 +103,7 @@ const makeText = ({
     }
   })
 
-  return textList.map(line => `  ${line}`).join('\n')
+  return textList.join('\n')
 
   function makeLinkHash(link: Record<string, unknown>, move: number) {
     const textList: Array<string> = []

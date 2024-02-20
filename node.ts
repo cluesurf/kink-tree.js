@@ -65,7 +65,7 @@ function readHostLinkFile(
 
 export { makeText }
 
-export function makeKinkText(kink: Kink) {
+export function makeKinkText(kink: Kink): string {
   return makeText({
     host: kink.host,
     code: kink.code,

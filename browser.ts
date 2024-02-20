@@ -3,7 +3,7 @@ import makeText from './index.js'
 
 export { makeText }
 
-export function makeKinkText(kink: Kink) {
+export function makeKinkText(kink: Kink): string {
   return makeText({
     host: kink.host,
     code: kink.code,
@@ -12,6 +12,6 @@ export function makeKinkText(kink: Kink) {
   })
 }
 
-export function makeBaseKinkText(kink: Error) {
+export function makeBaseKinkText(kink: Error): string {
   return makeText(Kink.makeBase(kink))
 }
