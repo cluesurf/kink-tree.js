@@ -101,7 +101,7 @@ const makeText = ({
     textList.push(`  ${siteText}${fileText}${tint('>', H)}`)
 
     if (link.task) {
-      const callText = '    ' + tint(`    call <`, H)
+      const callText = '    ' + tint(`call <`, H)
       const taskText = tint(link.task, W)
       textList.push(`${callText}${taskText}${tint('>', H)}`)
     }
