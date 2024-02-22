@@ -25,12 +25,17 @@ function loadHostLink(line: string): smc.SourceMapConsumer | void {
   }
 }
 
+function readLinkBase(path: string): string {
+  const relative = pathResolve.relative(process.cwd(), path)
+  // get pnpm symlink path so it's nicer to see.
+  if (relative.match(/^(node_modules\/\.pnpm\/.+\/node_modules)/)) {
+    return `node_modules/${relative.slice(RegExp.$1.length)}`
+  }
+  return relative
+}
+
 function readLink(path: string, context: string): string {
-  const relative = pathResolve.relative(
-    process.cwd(),
-    pathResolve.resolve(context, path),
-  )
-  return relative.startsWith('.') ? relative : `./${relative}`
+  return readLinkBase(pathResolve.resolve(context, path))
 }
 
 function readHostLinkFile(
@@ -61,7 +66,7 @@ function readHostLinkFile(
       return [file, line, rise]
     }
   } else {
-    return [file, line, rise]
+    return [readLinkBase(file), line, rise]
   }
 }
 

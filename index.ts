@@ -41,8 +41,12 @@ export const makeTextHead = (
   const H = { tone: 'blackBright' }
 
   list.push(tint(`kink <`, H) + tint(`${note}`, R) + tint('>', H))
-  list.push(tint(`  code <`, H) + tint(`${code}`, W) + tint(`>`, H))
-  list.push(tint(`  host <`, H) + tint(`${host}`, H) + tint(`>`, H))
+  list.push(
+    '  ' + tint(`code <`, H) + tint(`${code}`, W) + tint(`>`, H),
+  )
+  list.push(
+    '  ' + tint(`host <`, H) + tint(`${host}`, H) + tint(`>`, H),
+  )
   return list
 }
 
@@ -97,7 +101,7 @@ const makeText = ({
     textList.push(`  ${siteText}${fileText}${tint('>', H)}`)
 
     if (link.task) {
-      const callText = tint(`    call <`, H)
+      const callText = '    ' + tint(`    call <`, H)
       const taskText = tint(link.task, W)
       textList.push(`${callText}${taskText}${tint('>', H)}`)
     }
