@@ -4,6 +4,8 @@ import fs from 'fs'
 import pathResolve from 'path'
 import makeText from './index.js'
 
+export * from './index.js'
+
 const HOST_LINK_MESH: Record<string, smc.SourceMapConsumer> = {}
 
 function loadHostLink(line: string): smc.SourceMapConsumer | void {

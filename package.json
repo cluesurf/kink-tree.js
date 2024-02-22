@@ -1,7 +1,7 @@
 {
   "name": "@termsurf/kink-text",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "license": "MIT",
   "main": "./make/node.js",
   "browser": "./make/browser.js",
@@ -56,6 +56,6 @@
   "dependencies": {
     "@cspotcode/source-map": "^0.8.0",
     "@termsurf/kink": "^0.1.2",
-    "@termsurf/tint-text": "^0.0.3"
+    "@termsurf/tint-text": "^0.0.4"
   }
 }

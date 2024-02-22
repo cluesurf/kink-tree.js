@@ -1,6 +1,8 @@
 import Kink from '@termsurf/kink'
 import makeText from './index.js'
 
+export * from './index.js'
+
 export { makeText }
 
 export function makeKinkText(kink: Kink): string {
