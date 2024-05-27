@@ -1,7 +1,7 @@
 {
   "name": "@termsurf/kink-tree",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "main": "./host/node.js",
   "browser": "./host/browser.js",
@@ -34,7 +34,6 @@
     "chokidar": "^3.5.3",
     "concurrently": "^7.6.0",
     "cross-fetch": "^3.1.6",
-    "date-fns": "^3.6.0",
     "email-validator": "^2.0.4",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
@@ -57,6 +56,7 @@
   "dependencies": {
     "@cspotcode/source-map": "^0.8.0",
     "@termsurf/kink": "^0.2.3",
-    "@termsurf/tint-text": "^0.0.4"
+    "@termsurf/tint-text": "^0.0.4",
+    "date-fns": "^3.6.0"
   }
 }

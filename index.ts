@@ -1,5 +1,7 @@
 import tint from '@termsurf/tint-text'
 
+export const TIME_FORM = 'yyyy/MM/dd @ hh:mm:ss.SSSaaa'
+
 export type LineListLink = {
   code?: number
   file: string

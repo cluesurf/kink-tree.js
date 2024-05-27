@@ -1,7 +1,7 @@
 import Kink from '@termsurf/kink'
 import fs from 'fs'
 import { format } from 'date-fns'
-import { makeKinkText, makeBaseKinkText } from './node.js'
+import { makeKinkText, makeBaseKinkText, TIME_FORM } from './node.js'
 
 const host = '@termsurf/kink-text'
 
@@ -18,7 +18,7 @@ Kink.base(host, 'syntax_error', () => ({
 
 Kink.code(host, (code: number) => code.toString(16).padStart(4, '0'))
 
-Kink.time(time => format(time, 'yyyy/MM/dd @ hh:mm:ss.SSSaaa'))
+Kink.time(time => format(time, TIME_FORM))
 
 export default function kink<N extends Name>(form: N, link?: Base[N]) {
   return Kink.make(host, form, link)
