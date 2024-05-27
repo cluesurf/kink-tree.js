@@ -33,6 +33,7 @@ export const makeTextHead = (
   note: string,
   code: string,
   host: string,
+  time: string,
 ) => {
   const list: Array<string> = []
 
@@ -50,6 +51,9 @@ export const makeTextHead = (
       tint('>', H),
   )
   list.push(
+    '  ' + tint(`time <`, H) + tint(`${time}`, W) + tint('>,', H),
+  )
+  list.push(
     '  ' + tint(`code <`, H) + tint(`${code}`, C) + tint(`>`, H),
   )
   list.push('  ' + tint(`host `, H) + tint(`${host}`, H))
@@ -61,6 +65,7 @@ export type MakeText = {
   code: string
   note: string
   link?: Record<string, unknown>
+  time: string
   // stack trace
   list: Array<string>
   hook?: HostLinkHook
@@ -76,6 +81,7 @@ const makeText = ({
   note,
   link = {},
   list,
+  time,
   hook,
 }: MakeText): string => {
   const textList: Array<string> = []
@@ -88,7 +94,7 @@ const makeText = ({
   const G = { tone: 'green' }
   const H = { tone: 'blackBright' }
 
-  textList.push(...makeTextHead(note, code, host))
+  textList.push(...makeTextHead(note, code, host, time))
 
   textList.push(...makeLinkHash(link, 1))
 

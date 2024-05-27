@@ -7,6 +7,7 @@ export { makeText }
 
 export function makeKinkText(kink: Kink): string {
   return makeText({
+    time: kink.time,
     host: kink.host,
     code: kink.code,
     note: kink.note,
@@ -15,5 +16,5 @@ export function makeKinkText(kink: Kink): string {
 }
 
 export function makeBaseKinkText(kink: Error): string {
-  return makeText(Kink.makeBase(kink))
+  return makeText({ ...Kink.makeBase(kink), list: [] })
 }

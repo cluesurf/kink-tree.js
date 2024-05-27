@@ -74,6 +74,7 @@ export { makeText }
 
 export function makeKinkText(kink: Kink): string {
   return makeText({
+    time: kink.time,
     host: kink.host,
     code: kink.code,
     note: kink.note,
@@ -85,6 +86,7 @@ export function makeKinkText(kink: Kink): string {
 
 export function makeBaseKinkText(kink: Error) {
   return makeText({
+    time: Kink.makeTime(Date.now()),
     host: 'node',
     code:
       'code' in kink && typeof kink.code === 'string'
