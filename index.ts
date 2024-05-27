@@ -37,16 +37,22 @@ export const makeTextHead = (
   const list: Array<string> = []
 
   const R = { tone: 'red' }
+  const RB = { tone: 'red', bold: true, line: true }
   const W = { tone: 'white' }
   const H = { tone: 'blackBright' }
+  const C = { tone: 'cyan' }
 
-  list.push(tint(`kink <`, H) + tint(`${note}`, R) + tint('>', H))
   list.push(
-    '  ' + tint(`code <`, H) + tint(`${code}`, W) + tint(`>`, H),
+    tint(`kink`, R) +
+      ' ' +
+      tint('<', H) +
+      tint(`${note}`, RB) +
+      tint('>', H),
   )
   list.push(
-    '  ' + tint(`host <`, H) + tint(`${host}`, H) + tint(`>`, H),
+    '  ' + tint(`code <`, H) + tint(`${code}`, C) + tint(`>`, H),
   )
+  list.push('  ' + tint(`host `, H) + tint(`${host}`, H))
   return list
 }
 
@@ -77,6 +83,8 @@ const makeText = ({
   const W = { tone: 'white' }
   const WB = { tone: 'whiteBright' }
   const B = { tone: 'blue' }
+  const M = { tone: 'magenta' }
+  const MB = { tone: 'cyan', bold: true }
   const G = { tone: 'green' }
   const H = { tone: 'blackBright' }
 
@@ -146,12 +154,12 @@ const makeText = ({
             } else if (typeof bind === 'number') {
               textList.push(...makeLinkSize(name, bind, move))
             } else if (Array.isArray(bind)) {
-              textList.push(`${moveText}${tint(`${name}`, H)}`)
+              textList.push(`${moveText}${tint(`bind ${name}`, H)}`)
               bind.forEach(bind => {
                 textList.push(...makeLinkBond(bondName, bind, move + 1))
               })
             } else if (typeof bind === 'object') {
-              textList.push(`${moveText}${tint(`${name}`, H)}`)
+              textList.push(`${moveText}${tint(`bind ${name}`, H)}`)
               textList.push(...makeLinkBond(bondName, bind, move + 1))
             }
           } else {
@@ -194,7 +202,7 @@ const makeText = ({
       textList.push(...makeLinkSize(name, bond, move))
     } else if (typeof bond === 'object') {
       const moveText = makeTextMove(move)
-      textList.push(`${moveText}${tint(`${name}`, H)}`)
+      textList.push(`${moveText}${tint(`bind ${name}`, H)}`)
       textList.push(
         ...makeLinkHash(bond as Record<string, unknown>, move + 1),
       )
@@ -218,10 +226,10 @@ const makeText = ({
     const textList: Array<string> = []
     const moveText = makeTextMove(move)
     textList.push(
-      `${moveText}${tint(`${name} <`, H)}${tint('null', B)}${tint(
-        `>`,
+      `${moveText}${tint(`bind`, H)} ${tint(name, W)}${tint(
+        `,`,
         H,
-      )}`,
+      )} ${tint('null', MB)}`,
     )
     return textList
   }
@@ -230,10 +238,10 @@ const makeText = ({
     const textList: Array<string> = []
     const moveText = makeTextMove(move)
     textList.push(
-      `${moveText}${tint(`${name} <`, H)}${tint(String(bond), G)}${tint(
-        `>`,
+      `${moveText}${tint(`bind`, H)} ${tint(name, W)}${tint(
+        `,`,
         H,
-      )}`,
+      )} ${tint(String(bond), G)}`,
     )
     return textList
   }
@@ -242,10 +250,10 @@ const makeText = ({
     const textList: Array<string> = []
     const moveText = makeTextMove(move)
     textList.push(
-      `${moveText}${tint(`${name} <`, H)}${tint(String(bond), B)}${tint(
-        `>`,
+      `${moveText}${tint(`bind`, H)} ${tint(name, W)}${tint(
+        `,`,
         H,
-      )}`,
+      )} ${tint(String(bond), B)}`,
     )
     return textList
   }
@@ -254,19 +262,24 @@ const makeText = ({
     const textList: Array<string> = []
     const moveText = makeTextMove(move)
     if (bond.match(/\n/)) {
-      textList.push(`${moveText}${tint(`${name} <`, H)}`)
+      textList.push(
+        `${moveText}${tint(`bind`, H)} ${tint(name, W)}${tint(
+          `, <`,
+          H,
+        )}`,
+      )
       bond.split(/\n/).forEach(line => {
         const moveNest = move + 1
         const moveNestText = makeTextMove(moveNest)
-        textList.push(`${moveNestText}${line}`)
+        textList.push(`${moveNestText}${tint(line, M)}`)
       })
       textList.push(`${moveText}${tint(`>`, H)}`)
     } else {
       textList.push(
-        `${moveText}${tint(`${name} <`, H)}${tint(bond, B)}${tint(
-          `>`,
+        `${moveText}${tint(`bind`, H)} ${tint(name, W)}${tint(
+          `, <`,
           H,
-        )}`,
+        )}${tint(bond, M)}${tint(`>`, H)}`,
       )
     }
     return textList

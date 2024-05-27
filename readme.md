@@ -6,9 +6,9 @@
 <br/>
 <br/>
 
-<h3 align='center'>@termsurf/kink-text</h3>
+<h3 align='center'>@termsurf/kink-tree</h3>
 <p align='center'>
-  Error printing in TypeScript
+  Error printing as TreeCode in TypeScript
 </p>
 
 <br/>
@@ -18,15 +18,15 @@
 ## Installation
 
 ```
-pnpm add @termsurf/kink-text
-yarn add @termsurf/kink-text
-npm i @termsurf/kink-text
+pnpm add @termsurf/kink-tree
+yarn add @termsurf/kink-tree
+npm i @termsurf/kink-tree
 ```
 
 ## Usage
 
 <p align='center'>
-  <img src='https://github.com/termsurf/kink-text.js/blob/make/halt.png?raw=true' width='640'/>
+  <img src='https://github.com/termsurf/kink-tree.js/blob/make/view/kink.png?raw=true' width='520'/>
 </p>
 
 ## License

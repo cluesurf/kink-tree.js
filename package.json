@@ -1,27 +1,27 @@
 {
-  "name": "@termsurf/kink-text",
+  "name": "@termsurf/kink-tree",
   "type": "module",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "license": "MIT",
-  "main": "./make/node.js",
-  "browser": "./make/browser.js",
+  "main": "./host/node.js",
+  "browser": "./host/browser.js",
   "files": [
-    "./make/index.js",
-    "./make/index.js.map",
-    "./make/index.d.ts",
-    "./make/node.js",
-    "./make/node.js.map",
-    "./make/node.d.ts",
-    "./make/browser.js",
-    "./make/browser.js.map",
-    "./make/browser.d.ts"
+    "./host/index.js",
+    "./host/index.js.map",
+    "./host/index.d.ts",
+    "./host/node.js",
+    "./host/node.js.map",
+    "./host/node.d.ts",
+    "./host/browser.js",
+    "./host/browser.js.map",
+    "./host/browser.d.ts"
   ],
   "scripts": {
     "make": "tsc && tsc-alias",
     "scan": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\"",
     "lint": "eslint --ext .ts ./make",
     "lint:tool": "npm run lint -- --fix",
-    "test": "node make/test.js",
+    "test": "tsx test.ts",
     "host": "pnpm make && npm publish --access=public"
   },
   "devDependencies": {

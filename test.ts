@@ -21,6 +21,10 @@ export default function kink<N extends Name>(form: N, link?: Base[N]) {
   return Kink.make(host, form, link)
 }
 
+console.log('')
+console.log('')
+console.log('')
+
 // https://nodejs.org/api/errors.html
 process.on('uncaughtException', err => {
   if (err instanceof Kink) {
@@ -28,6 +32,10 @@ process.on('uncaughtException', err => {
     console.log(makeKinkText(err))
   } else {
     console.log(makeBaseKinkText(err))
+
+    console.log('')
+    console.log('')
+    console.log('')
   }
 })
 
