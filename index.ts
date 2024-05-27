@@ -37,7 +37,7 @@ export const makeTextHead = (
   const list: Array<string> = []
 
   const R = { tone: 'red' }
-  const RB = { tone: 'red', bold: true, line: true }
+  const RB = { tone: 'red', bold: true }
   const W = { tone: 'white' }
   const H = { tone: 'blackBright' }
   const C = { tone: 'cyan' }
