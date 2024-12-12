@@ -1,7 +1,7 @@
 {
   "name": "@cluesurf/kink-tree",
   "type": "module",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "./host/node.js",
   "browser": "./host/browser.js",
