@@ -1,5 +1,5 @@
 {
-  "name": "@termsurf/kink-tree",
+  "name": "@cluesurf/kink-tree",
   "type": "module",
   "version": "0.2.1",
   "license": "MIT",
@@ -55,8 +55,8 @@
   },
   "dependencies": {
     "@cspotcode/source-map": "^0.8.0",
-    "@termsurf/kink": "^0.2.3",
-    "@termsurf/tint-text": "^0.0.4",
+    "@cluesurf/kink": "^0.2.3",
+    "@cluesurf/tint-text": "^0.0.4",
     "date-fns": "^3.6.0"
   }
 }
